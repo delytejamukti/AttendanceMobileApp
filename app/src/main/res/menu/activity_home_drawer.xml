@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_photo"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Take Photo" />
+        <item
+            android:id="@+id/nav_time"
+            android:icon="@drawable/ic_baseline_table"
+            android:title="Time" />
+        <item
+            android:id="@+id/nav_training"
+            android:icon="@drawable/ic_training"
+            android:title="Training" />
+        <item
+            android:id="@+id/nav_predict"
+            android:icon="@drawable/ic_predict"
+            android:title="Predict" />
+        <item
+            android:id="@+id/nav_absen"
+            android:icon="@drawable/ic_predict"
+            android:title="Absen" />
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>

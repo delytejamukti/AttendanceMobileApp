@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="teja.dely.cameraapp.Camera"
+    android:orientation="vertical">
+
+    <com.wonderkiln.camerakit.CameraView
+        android:layout_marginTop="36dp"
+        android:id="@+id/camera_predict"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginVertical="10dp"
+        app:ckFacing="front"
+        app:ckFlash="off"
+        app:ckFocus="continuous"
+        app:ckCropOutput="true"
+        app:ckZoom="off"/>
+    <Button
+        android:id="@+id/btn_predict"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:text="Capture"
+        android:textSize="28sp"
+        android:layout_marginLeft="100dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"/>
+
+    <TextView
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/status"
+        android:textAlignment="center"
+        />
+
+</LinearLayout>
