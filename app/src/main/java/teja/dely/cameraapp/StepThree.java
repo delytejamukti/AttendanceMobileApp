@@ -28,7 +28,7 @@ public class StepThree extends AppCompatActivity {
 
     String nrp,pass,idAgenda,lat,lon;
     private CameraView camera_absen;
-    private CameraKitEventListener cameradListener;
+    private CameraKitEventListener SignIncameradListener;
     private Button btnAbsen;
     SweetAlertDialog sweetAbsen;
 
@@ -49,7 +49,7 @@ public class StepThree extends AppCompatActivity {
 //        Toast.makeText(this, lat, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, lon, Toast.LENGTH_SHORT).show();
 
-        cameradListener = new CameraKitEventListener() {
+        SignIncameradListener = new CameraKitEventListener() {
             @Override
             public void onEvent(CameraKitEvent cameraKitEvent) {
 
@@ -83,11 +83,18 @@ public class StepThree extends AppCompatActivity {
                             @Override
                             public void run() {
                                 sweetAbsen.cancel();
+                                Intent step_four = new  Intent (StepThree.this,StepFour.class);
+                                step_four.putExtra("nrp",nrp);
+                                step_four.putExtra("pass",pass);
+                                step_four.putExtra("idAgenda",idAgenda);
+                                step_four.putExtra("lat",lat);
+                                step_four.putExtra("lon",lon);
+                                startActivity(step_four);
+
+
+
                                 finish();
-                                Intent go_home = new Intent(StepThree.this,Home.class);
-                                go_home.putExtra("nrp",nrp);
-                                go_home.putExtra("pass",pass);
-                                startActivity(go_home);
+//
 
                             }
                         }, 2300);
@@ -122,7 +129,7 @@ public class StepThree extends AppCompatActivity {
         };
 
         camera_absen = (CameraView) findViewById(R.id.camera_absen);
-        camera_absen.addCameraKitListener(cameradListener);
+        camera_absen.addCameraKitListener(SignIncameradListener);
 
         btnAbsen = (Button) findViewById(R.id.btn_absen);
         btnAbsen.setOnClickListener(new View.OnClickListener() {

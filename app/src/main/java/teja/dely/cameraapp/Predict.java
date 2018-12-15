@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.wonderkiln.camerakit.CameraKitError;
 import com.wonderkiln.camerakit.CameraKitEvent;
@@ -27,7 +29,7 @@ import retrofit2.Response;
 public class Predict extends AppCompatActivity {
 
     private CameraView camera_predict;
-    private CameraKitEventListener cameradListener;
+    private CameraKitEventListener PredictcameradListener;
     private Button btnPredict;
     SweetAlertDialog sweetPredict;
     String nrp,password;
@@ -39,7 +41,7 @@ public class Predict extends AppCompatActivity {
         Intent in_predict = getIntent();
         nrp = in_predict.getStringExtra("nrp");
         password = in_predict.getStringExtra("pass");
-        cameradListener = new CameraKitEventListener() {
+        PredictcameradListener = new CameraKitEventListener() {
             @Override
             public void onEvent(CameraKitEvent cameraKitEvent) {
 
@@ -58,8 +60,11 @@ public class Predict extends AppCompatActivity {
                 result = Bitmap.createScaledBitmap(result, 96,96, true);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 String myBase64Image = encodeToBase64(result, Bitmap.CompressFormat.JPEG, 100);
+                Log.d("test", "data:image/jpeg;base64,"+myBase64Image);
+
                 final ApiInterface api = Server.getclient().create(ApiInterface.class);
                 Call<ResponseApi> doPredict =api.predict(nrp,password,"data:image/jpeg;base64,"+myBase64Image);
+
                 doPredict.enqueue(new Callback<ResponseApi>() {
                     @Override
                     public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
@@ -108,7 +113,7 @@ public class Predict extends AppCompatActivity {
         };
 
         camera_predict = (CameraView) findViewById(R.id.camera_predict);
-        camera_predict.addCameraKitListener(cameradListener);
+        camera_predict.addCameraKitListener(PredictcameradListener);
 
         btnPredict = (Button) findViewById(R.id.btn_predict);
         btnPredict.setOnClickListener(new View.OnClickListener() {

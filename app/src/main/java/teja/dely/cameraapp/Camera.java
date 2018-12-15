@@ -32,9 +32,9 @@ import retrofit2.Response;
 
 public class Camera extends AppCompatActivity {
 
-    private CameraView camerad;
-    private CameraKitEventListener cameradListener;
-    private Button btnCapture;
+    private CameraView camera_upload;
+    private CameraKitEventListener UploadcameradListener;
+    private Button btnCapture_upload;
     SweetAlertDialog sweetUpload;
     String nrp,pass;
 
@@ -43,11 +43,13 @@ public class Camera extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        status = (TextView)findViewById(R.id.status);
+
         Intent in_camera = getIntent();
         nrp = in_camera.getStringExtra("nrp");
         pass = in_camera.getStringExtra("pass");
-        cameradListener = new CameraKitEventListener() {
+
+
+        UploadcameradListener = new CameraKitEventListener() {
             @Override
             public void onEvent(CameraKitEvent cameraKitEvent) {
 
@@ -64,7 +66,9 @@ public class Camera extends AppCompatActivity {
                 Bitmap result = BitmapFactory.decodeByteArray(picture, 0, picture.length);
                 result = Bitmap.createScaledBitmap(result, 96,96, true);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
+
                 String myBase64Image = encodeToBase64(result, Bitmap.CompressFormat.JPEG, 100);
+
                 final ApiInterface api = Server.getclient().create(ApiInterface.class);
                 Log.d("test", "onImage: "+myBase64Image);
                 JSONObject paramObject = new JSONObject();
@@ -118,16 +122,20 @@ public class Camera extends AppCompatActivity {
 
             }
         };
-        camerad = (CameraView) findViewById(R.id.camerad);
-        camerad.addCameraKitListener(cameradListener);
 
-        btnCapture = (Button) findViewById(R.id.btn_capture);
-        btnCapture.setOnClickListener(new View.OnClickListener() {
+        camera_upload = (CameraView) findViewById(R.id.camera_upload);
+        camera_upload.addCameraKitListener(UploadcameradListener);
+
+        btnCapture_upload = (Button) findViewById(R.id.btn_upload);
+        btnCapture_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                camerad.captureImage();
+                camera_upload.captureImage();
             }
         });
+
+
+
     }
 
     private void saveDB(String name, String start, String end, String delta, String created_at) {
@@ -149,12 +157,12 @@ public class Camera extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        camerad.start();
+        camera_upload.start();
     }
 
     @Override
     protected void onPause() {
-        camerad.stop();
+        camera_upload.stop();
         super.onPause();
     }
 

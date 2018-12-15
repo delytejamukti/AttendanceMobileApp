@@ -16,16 +16,36 @@ public interface ApiInterface {
                              @Field("password") String password,
                              @Field("image") String image);
 
+
+    @FormUrlEncoded
+    @POST("/sendImg_TTD/")
+    Call<ResponseApi> kirim_ttd (@Field("idUser") String idUser ,
+                             @Field("password") String password,
+                             @Field("image") String image);
+
+
     @FormUrlEncoded
     @POST("/doTrain/")
     Call<ResponseApi> train (@Field("idUser") String idUser,
                              @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("/doTrain_TTD/")
+    Call<ResponseApi> train_ttd (@Field("idUser") String idUser,
+                                @Field("password") String password);
+
+
+    @FormUrlEncoded
     @POST("/doPredict/")
     Call<ResponseApi> predict (@Field("idUser") String idUser ,
                                @Field("password") String password,
                                @Field("image") String image);
+
+    @FormUrlEncoded
+    @POST("/doPredict_TTD/")
+    Call<ResponseApi> predict_ttd (@Field("idUser") String idUser ,
+                                    @Field("password") String password,
+                                    @Field("image") String image);
 
     @FormUrlEncoded
     @POST("/signin/")
@@ -35,4 +55,14 @@ public interface ApiInterface {
                               @Field("Lat") String latitude,
                               @Field("Lon") String longitude,
                               @Field("idAgenda") String idAgenda);
+
+    @FormUrlEncoded
+    @POST("/signin_TTD/")
+    Call<ResponseApi> doAbsen_ttd (@Field("idUser") String idUser,
+                                    @Field("password") String password,
+                                    @Field("image") String image,
+                                    @Field("Lat") String latitude,
+                                    @Field("Lon") String longitude,
+                                    @Field("idAgenda") String idAgenda);
+
 }

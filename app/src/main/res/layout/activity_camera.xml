@@ -9,7 +9,7 @@
 
     <com.wonderkiln.camerakit.CameraView
         android:layout_marginTop="36dp"
-        android:id="@+id/camerad"
+        android:id="@+id/camera_upload"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginLeft="30dp"
@@ -20,7 +20,7 @@
         app:ckCropOutput="true"
         app:ckZoom="off"/>
     <Button
-        android:id="@+id/btn_capture"
+        android:id="@+id/btn_upload"
         android:layout_width="170dp"
         android:layout_height="70dp"
         android:text="Capture"
@@ -29,12 +29,5 @@
         android:background="@color/colorPrimary"
         android:textColor="#ffff"/>
 
-    <TextView
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:id="@+id/status"
-        android:textAlignment="center"
-        />
 
 </LinearLayout>
