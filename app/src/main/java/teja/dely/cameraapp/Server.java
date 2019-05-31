@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Server {
-    public static final String url = "http://etc.if.its.ac.id/";
+    public static final String url = "url";
 
     private static Retrofit retrofit;
 
